@@ -13,6 +13,7 @@ interface UserListProps {
 // Functional component for rendering the list of users
 const UserList: React.FC<UserListProps> = ({ users, onEdit, onDelete }) => {
   return (
+    <div className='table-wrapper'>
     <table>
       <thead>
         <tr>
@@ -42,6 +43,7 @@ const UserList: React.FC<UserListProps> = ({ users, onEdit, onDelete }) => {
         ))}
       </tbody>
     </table>
+    </div>
   );
 };
 

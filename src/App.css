@@ -113,6 +113,10 @@ td:nth-child(1):hover {
   font-weight: bold; /* Make bold on hover for name column */
 }
 
+.table-wrapper{
+  overflow-x: auto;
+}
+
 /* Action Buttons in Table */
 table button {
   padding: 5px 10px;
