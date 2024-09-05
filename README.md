@@ -12,8 +12,6 @@ A React application for managing users, including viewing, creating, updating, a
 - [Components](#components)
 - [Data Storage](#data-storage)
 - [Dependencies](#dependencies)
-- [Contributing](#contributing)
-- [License](#license)
 - [Learn More](#learn-more)
 
 ## Getting Started
