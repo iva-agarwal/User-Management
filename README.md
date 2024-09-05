@@ -1,5 +1,7 @@
 # User Management
 
+You can view a live demo of the application hosted on Netlify at [https://user-management-assignment2024.netlify.app/](https://66da062f366cde1c4e03f60e--user-management-assignment2024.netlify.app/)
+
 A React application for managing users, including viewing, creating, updating, and deleting (CRUD) user profiles. The application uses TypeScript for type safety and fetches user data from an API with local storage fallback.
 
 ## Table of Contents

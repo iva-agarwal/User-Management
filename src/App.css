@@ -68,7 +68,8 @@ button:hover {
 }
 
 /* Table Styles */
-.table-responsive {
+/* Table Styles */
+.table-wrapper {
   width: 100%;
   overflow-x: auto; /* Horizontal scrolling on small screens */
   -webkit-overflow-scrolling: touch; /* Smooth scrolling for mobile */
@@ -90,6 +91,9 @@ thead {
 th, td {
   padding: 20px;
   text-align: left;
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Show ellipsis for overflow text */
 }
 
 tr {
@@ -105,17 +109,16 @@ td {
   font-weight: lighter;
 }
 
+/* Add specific width to columns if needed */
 td:nth-child(1) {
   color: #555;
+  width: 200px; /* Example fixed width */
 }
 
 td:nth-child(1):hover {
   font-weight: bold; /* Make bold on hover for name column */
 }
 
-.table-wrapper{
-  overflow-x: auto;
-}
 
 /* Action Buttons in Table */
 table button {
