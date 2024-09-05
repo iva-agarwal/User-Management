@@ -1,6 +1,6 @@
 /* General App Styles */
-body{
-  background-color:#f3f3f3 ;
+body {
+  background-color: #f3f3f3;
 }
 .App {
   text-align: left;
@@ -68,10 +68,17 @@ button:hover {
 }
 
 /* Table Styles */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto; /* Horizontal scrolling on small screens */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling for mobile */
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 30px;
+  min-width: 600px; /* Prevents shrinking too much on mobile */
 }
 
 thead {
@@ -125,8 +132,6 @@ table button:hover {
   opacity: 0.9;
 }
 
-/* App.css */
-
 /* Container to Center the Spinner */
 .spinner-container {
   position: fixed; /* Fix position to the viewport */
@@ -139,7 +144,6 @@ table button:hover {
   justify-content: center; /* Center horizontally */
   z-index: 1000; /* Ensure it appears on top of other content */
 }
-
 
 .spinner {
   width: 48px;
@@ -162,7 +166,7 @@ table button:hover {
   }
 }
 
-a{
+a {
   text-decoration: none;
   color: #0c0c0c;
 }
@@ -224,7 +228,7 @@ a{
 }
 
 .back-button:hover {
-  opacity: 0.9;;
+  opacity: 0.9;
 }
 
 /* Modal styles */
@@ -281,11 +285,138 @@ a{
   cursor: pointer;
 }
 
-.create-user-button:hover{
+.create-user-button:hover {
   opacity: 0.9;
 }
 
 /* Form container inside modal */
 .user-form-container {
   margin-top: 15px;
+}
+
+.alert {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.alert-show {
+  opacity: 1;
+}
+
+.alert-success {
+  background-color: #4caf50; /* Green */
+}
+
+.alert-error {
+  background-color: #f44336; /* Red */
+}
+
+.alert-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .App-header {
+    padding: 15px;
+  }
+
+  .user-detail-container {
+    padding: 15px;
+  }
+
+  .modal-content {
+    width: 90%;
+  }
+
+  .user-form-container {
+    margin-top: 10px;
+  }
+
+  table button {
+    margin: 10px;
+  }
+
+  table th, table td {
+    padding: 10px;
+  }
+
+  .spinner {
+    width: 36px;
+    height: 36px;
+  }
+
+  .create-user-button {
+    padding: 8px 12px;
+  }
+
+  .back-button {
+    padding: 8px 15px;
+  }
+
+  .alert {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .App-header {
+    padding: 10px;
+  }
+
+  .user-detail-container {
+    padding: 10px;
+  }
+
+  .modal-content {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .create-user-button {
+    padding: 6px 10px;
+  }
+
+  .back-button {
+    padding: 6px 10px;
+  }
+
+  .alert {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  /* Make table scroll horizontally */
+  .table-responsive {
+    overflow-x: auto; 
+  }
+
+  table {
+    min-width: 600px; /* Prevent the table from shrinking too much */
+  }
 }

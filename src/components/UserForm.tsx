@@ -1,31 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { User } from '../types/User'; // Adjust the path based on your folder structure
+import { User } from '../types/User'; 
 
+// Define the props for the UserForm component
 interface UserFormProps {
-  selectedUser: User | null;
-  onCreate: (newUser: Omit<User, 'id'>) => void;
-  onUpdate: (updatedUser: User) => void;
+  selectedUser: User | null; // Holds the selected user for editing, or null if creating a new user
+  onCreate: (newUser: Omit<User, 'id'>) => void; // Callback for creating a new user (ID is excluded)
+  onUpdate: (updatedUser: User) => void; // Callback for updating an existing user
 }
 
 const UserForm: React.FC<UserFormProps> = ({ selectedUser, onCreate, onUpdate }) => {
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
+  // State variables to manage form fields
+  const [name, setName] = useState<string>(''); 
+  const [email, setEmail] = useState<string>(''); 
   const [phone, setPhone] = useState<string>('');
-  const [addressStreet, setAddressStreet] = useState<string>('');
+  const [addressStreet, setAddressStreet] = useState<string>(''); 
   const [addressCity, setAddressCity] = useState<string>('');
   const [addressZipcode, setAddressZipcode] = useState<string>('');
-  const [companyName, setCompanyName] = useState<string>('');
+  const [companyName, setCompanyName] = useState<string>(''); 
 
+  // This useEffect hook runs whenever the selectedUser changes.
+  // It pre-fills the form if there is a selectedUser, otherwise it clears the form for new user creation.
   useEffect(() => {
     if (selectedUser) {
+      // If editing an existing user, prefill the form with user data
       setName(selectedUser.name);
       setEmail(selectedUser.email);
       setPhone(selectedUser.phone);
-      setAddressStreet(selectedUser.address?.street || '');
+      setAddressStreet(selectedUser.address?.street || ''); // Use empty string if field is undefined
       setAddressCity(selectedUser.address?.city || '');
       setAddressZipcode(selectedUser.address?.zipcode || '');
       setCompanyName(selectedUser.company?.name || '');
     } else {
+      // Clear form fields for new user creation
       setName('');
       setEmail('');
       setPhone('');
@@ -34,11 +40,15 @@ const UserForm: React.FC<UserFormProps> = ({ selectedUser, onCreate, onUpdate })
       setAddressZipcode('');
       setCompanyName('');
     }
-  }, [selectedUser]);
+  }, [selectedUser]); // Runs when selectedUser changes
 
+  // Form submission handler
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevents the default form submission behavior (page reload)
+
+    // Check if editing an existing user or creating a new one
     if (selectedUser) {
+      // Update existing user
       onUpdate({
         id: selectedUser.id,
         name,
@@ -54,6 +64,7 @@ const UserForm: React.FC<UserFormProps> = ({ selectedUser, onCreate, onUpdate })
         },
       });
     } else {
+      // Create a new user
       onCreate({
         name,
         email,
@@ -68,6 +79,8 @@ const UserForm: React.FC<UserFormProps> = ({ selectedUser, onCreate, onUpdate })
         },
       });
     }
+
+    // Clear form fields after submission
     setName('');
     setEmail('');
     setPhone('');
@@ -79,6 +92,7 @@ const UserForm: React.FC<UserFormProps> = ({ selectedUser, onCreate, onUpdate })
 
   return (
     <form onSubmit={handleSubmit}>
+      {/* Name input field */}
       <div>
         <label>Name</label>
         <input
@@ -88,6 +102,8 @@ const UserForm: React.FC<UserFormProps> = ({ selectedUser, onCreate, onUpdate })
           required
         />
       </div>
+
+      {/* Email input field */}
       <div>
         <label>Email</label>
         <input
@@ -97,6 +113,8 @@ const UserForm: React.FC<UserFormProps> = ({ selectedUser, onCreate, onUpdate })
           required
         />
       </div>
+
+      {/* Phone input field */}
       <div>
         <label>Phone</label>
         <input
@@ -106,12 +124,15 @@ const UserForm: React.FC<UserFormProps> = ({ selectedUser, onCreate, onUpdate })
           required
         />
       </div>
+
+      {/* Optional Address fields */}
       <div>
         <label>Address Street</label>
         <input
           type="text"
           value={addressStreet}
           onChange={(e) => setAddressStreet(e.target.value)}
+          placeholder='Optional'
         />
       </div>
       <div>
@@ -120,6 +141,7 @@ const UserForm: React.FC<UserFormProps> = ({ selectedUser, onCreate, onUpdate })
           type="text"
           value={addressCity}
           onChange={(e) => setAddressCity(e.target.value)}
+          placeholder='Optional'
         />
       </div>
       <div>
@@ -128,16 +150,22 @@ const UserForm: React.FC<UserFormProps> = ({ selectedUser, onCreate, onUpdate })
           type="text"
           value={addressZipcode}
           onChange={(e) => setAddressZipcode(e.target.value)}
+          placeholder='Optional'
         />
       </div>
+
+      {/* Optional Company name field */}
       <div>
         <label>Company Name</label>
         <input
           type="text"
           value={companyName}
           onChange={(e) => setCompanyName(e.target.value)}
+          placeholder='Optional'
         />
       </div>
+
+      {/* Submit button, changes label based on whether it's updating or creating a user */}
       <button type="submit">
         {selectedUser ? 'Update User' : 'Create User'}
       </button>

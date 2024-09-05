@@ -1,20 +1,6 @@
 // src/context/UserContext.tsx
 import React, { createContext, useState, useContext } from 'react';
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  phone: string;
-  website: string;
-  company?: { name: string };
-  address?: {
-    street: string;
-    suite: string;
-    city: string;
-    zipcode: string;
-  };
-}
+import { User } from '../types/User'; 
 
 interface UserContextType {
   users: User[];
